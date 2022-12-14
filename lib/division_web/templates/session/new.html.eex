@@ -4,7 +4,7 @@
       <div class="card-content">
         <span class="card-title">LOGIN</span>
         <div class="row card-form">
-          <%= form_for @conn, Routes.session_path(@conn, :new), [:as :session], fn f -> %>
+          <%= form_for @conn, Routes.session_path(@conn, :new), [as: :session], fn f -> %>
             <%= text_input f, :username, placeholder: "Username" %>
             <%= password_input f, :password, placeholder: "Password" %>
             <%= submit "Submit", class: "btn right secondary-color" %>
