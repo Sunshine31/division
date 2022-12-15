@@ -3,9 +3,10 @@ defmodule Division.Accounts.Auth do
 
   def login(params, repo) do
     user = repo.get_by(User, username: String.downcase(params["username"]))
+
     case authenticate(user, params["password"]) do
       true -> {:ok, user}
-      _    -> :error  
+      _ -> :error
     end
   end
 
@@ -18,7 +19,14 @@ defmodule Division.Accounts.Auth do
     end
   end
 
-  def signed_in?(conn) do
+  def current_user(conn) do
     conn.assigns[:current_user]
+  end
+
+  def signed_in?(conn) do
+    case current_user(conn) do
+      nil -> false
+      _ -> true
+    end
   end
 end
